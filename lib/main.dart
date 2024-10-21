@@ -34,7 +34,6 @@ class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _MainScreenState createState() => _MainScreenState();
 }
 
@@ -45,7 +44,7 @@ class _MainScreenState extends State<MainScreen> {
     const Home(title: 'Home Page'),
     const LocationStatusScreen(),
     QrCodeScanner(),
-    SensorPlusPage (),
+    SensorPlusPage(),
     SpeechToTextView(),
     TextToSpeechView(),
   ];
@@ -61,6 +60,7 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white,  // Asegura que el fondo sea visible
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
@@ -68,7 +68,7 @@ class _MainScreenState extends State<MainScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.add_location),
-            label: 'Geolacalización',
+            label: 'Geolocalización',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.qr_code),
@@ -76,18 +76,20 @@ class _MainScreenState extends State<MainScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.sensors),
-            label: 'Sensores',),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.mic),
-              label: 'Habla',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.audiotrack),
-              label: 'Sonido',
-            ),
+            label: 'Sensores',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.mic),
+            label: 'Habla',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.audiotrack),
+            label: 'Sonido',
+          ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: const Color.fromARGB(255, 50, 15, 225),
+        selectedItemColor: const Color.fromARGB(255, 50, 15, 225), // Color del ícono seleccionado
+        unselectedItemColor: Colors.grey, // Color de los íconos no seleccionados
         onTap: _onItemTapped,
       ),
     );

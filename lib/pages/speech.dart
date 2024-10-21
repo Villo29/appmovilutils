@@ -143,12 +143,12 @@ class SpeechControlWidget extends StatelessWidget {
       children: <Widget>[
         ElevatedButton(
           onPressed: !hasSpeech || isListening ? null : startListening,
-          child: const Text('Empieza a Escuchar'),
+          child: const Text('Escuchar'),
         ),
         const SizedBox(width: 16),
         ElevatedButton(
           onPressed: isListening ? stopListening : null,
-          child: const Text('Detén la Escucha'),
+          child: const Text('Detener'),
         ),
       ],
     );

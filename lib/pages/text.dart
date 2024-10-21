@@ -75,6 +75,11 @@ class _TextToSpeechViewState extends State<TextToSpeechView> {
     });
   }
 
+  // Método para ocultar el teclado
+  void _hideKeyboard() {
+    FocusScope.of(context).unfocus(); // Oculta el teclado
+  }
+
   @override
   void dispose() {
     super.dispose();
@@ -108,9 +113,14 @@ class _TextToSpeechViewState extends State<TextToSpeechView> {
       alignment: Alignment.topCenter,
       padding: const EdgeInsets.symmetric(horizontal: 25.0),
       child: TextField(
-        maxLines: 6,
+        maxLines: 6, // Permite múltiples líneas
         minLines: 3,
         onChanged: _onChange,
+        onSubmitted: (value) {
+          _hideKeyboard();  // Oculta el teclado cuando se presiona "Done"
+          _speak();         // Inicia la conversión de texto a voz al presionar "Done"
+        },
+        textInputAction: TextInputAction.done,  // Cambia el botón "Intro" a "Done"
         decoration: const InputDecoration(
           border: OutlineInputBorder(),
           labelText: 'Introduce el texto a convertir en voz',
