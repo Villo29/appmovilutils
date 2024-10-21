@@ -4,6 +4,7 @@ import 'package:appmovilutils/pages/geolocator.dart';
 import 'package:appmovilutils/pages/qrflutter.dart';
 import 'package:appmovilutils/pages/sensorplus.dart';
 import 'package:appmovilutils/pages/speech.dart';
+import 'package:appmovilutils/pages/text.dart';
 
 void main() {
   runApp(const MyApp());
@@ -46,6 +47,7 @@ class _MainScreenState extends State<MainScreen> {
     QrCodeScanner(),
     SensorPlusPage (),
     SpeechToTextView(),
+    TextToSpeechView(),
   ];
 
   void _onItemTapped(int index) {

@@ -1,5 +1,5 @@
 name: appmovilutils
-description: "aplicaion que usa varias cosas del tellefono"
+description: "aplicaion que usa varias cosas del telefono"
 
 publish_to: 'none'
 
@@ -21,6 +21,7 @@ dependencies:
   sensors_plus: ^6.1.0
   torch_light: ^1.1.0
   speech_to_text: ^7.0.0
+  flutter_tts: ^4.0.2
 
 dev_dependencies:
   flutter_test:
