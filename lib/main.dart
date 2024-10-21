@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:appmovilutils/pages/home.dart';
 import 'package:appmovilutils/pages/geolocator.dart';
+import 'package:appmovilutils/pages/qrflutter.dart';
 
 void main() {
   runApp(const MyApp());
@@ -40,7 +41,7 @@ class _MainScreenState extends State<MainScreen> {
   static final List<Widget> _pages = <Widget>[
     const Home(title: 'Home Page'),
     const LocationStatusScreen(),
-    const RequestPage(),
+    QrCodeScanner(),
   ];
 
   void _onItemTapped(int index) {
@@ -60,15 +61,15 @@ class _MainScreenState extends State<MainScreen> {
             label: 'Perfil',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
+            icon: Icon(Icons.add_location),
             label: 'Geolacalización',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.http),
+            icon: Icon(Icons.qr_code),
             label: 'QR',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.phone),
+            icon: Icon(Icons.sensors),
             label: 'Sensores',),
             BottomNavigationBarItem(
               icon: Icon(Icons.mic),
@@ -80,24 +81,8 @@ class _MainScreenState extends State<MainScreen> {
             ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Color.fromARGB(255, 232, 27, 27),
+        selectedItemColor: const Color.fromARGB(255, 50, 15, 225),
         onTap: _onItemTapped,
-      ),
-    );
-  }
-}
-
-class RequestPage extends StatelessWidget {
-  const RequestPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Request Page'),
-      ),
-      body: const Center(
-        child: Text('This is the Request Page'),
       ),
     );
   }

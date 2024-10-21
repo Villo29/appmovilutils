@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class LocationStatusScreen extends StatefulWidget {
   const LocationStatusScreen({super.key});
@@ -100,6 +101,18 @@ class _LocationStatusScreenState extends State<LocationStatusScreen> {
     _lastUpdateTime = currentTime;
   }
 
+  // Abrir Google Maps con las coordenadas actuales
+  Future<void> _openInGoogleMaps() async {
+    if (_lastPosition != null) {
+      final url = 'https://www.google.com/maps/search/?api=1&query=${_lastPosition!.latitude},${_lastPosition!.longitude}';
+      if (await canLaunch(url)) {
+        await launch(url);
+      } else {
+        throw 'No se pudo abrir Google Maps';
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -149,6 +162,14 @@ class _LocationStatusScreenState extends State<LocationStatusScreen> {
                       backgroundColor: const Color.fromARGB(255, 79, 235, 124),
                     ),
                     child: const Text('Actualizar Ubicación'),
+                  ),
+                  const SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: _lastPosition != null ? _openInGoogleMaps : null, // Abrir Google Maps al hacer clic
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(255, 79, 235, 124),
+                    ),
+                    child: const Text('Ver en Google Maps'),
                   ),
                 ],
               ),

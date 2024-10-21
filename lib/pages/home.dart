@@ -23,6 +23,7 @@ class _HomeState extends State<Home> {
   }
 
 
+  // ignore: unused_element
   void _launchSMS(String number) async {
     final Uri launchUri = Uri(
       scheme: 'sms',
@@ -34,7 +35,9 @@ class _HomeState extends State<Home> {
 
   void _launchGitHub() async {
     const url = 'https://github.com/Villo29/phone_app.git';
+    // ignore: deprecated_member_use
     if (await canLaunch(url)) {
+      // ignore: deprecated_member_use
       await launch(url);
     } else {
       throw 'No se pudo lanzar $url';
