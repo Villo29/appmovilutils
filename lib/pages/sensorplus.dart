@@ -52,16 +52,18 @@ class _SensorPlusPageState extends State<SensorPlusPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text('Accelerometer: $accelerometer'),
-            SizedBox(height: 8.0),
-            ElevatedButton(
-              onPressed: _toggleTorch,
-              child: Text(_isTorchOn ? 'Turn off Torch' : 'Turn on Torch'),
-            ),
-          ],
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text('Accelerometer: $accelerometer'),
+              SizedBox(height: 8.0),
+              ElevatedButton(
+                onPressed: _toggleTorch,
+                child: Text(_isTorchOn ? 'Turn off Torch' : 'Turn on Torch'),
+              ),
+            ],
+          ),
         ),
       ),
     );
