@@ -18,6 +18,8 @@ dependencies:
   qr_flutter: ^4.1.0
   qr_scanner: ^0.0.2-259.9.beta
   mobile_scanner: ^6.0.1
+  sensors_plus: ^6.1.0
+  torch_light: ^1.1.0
 
 dev_dependencies:
   flutter_test:

@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSMotionUsageDescription</key>
+	<string>Necesitamos acceder a los sensores de movimiento para mejorar la experiencia de usuario.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Necesitamos acceder a tu cámara para usar la linterna.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Necesitamos acceder a tu cámara para escanear códigos QR.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>

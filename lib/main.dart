@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:appmovilutils/pages/home.dart';
 import 'package:appmovilutils/pages/geolocator.dart';
 import 'package:appmovilutils/pages/qrflutter.dart';
+import 'package:appmovilutils/pages/sensorplus.dart';
 
 void main() {
   runApp(const MyApp());
@@ -42,6 +43,7 @@ class _MainScreenState extends State<MainScreen> {
     const Home(title: 'Home Page'),
     const LocationStatusScreen(),
     QrCodeScanner(),
+    SensorPlusPage (),
   ];
 
   void _onItemTapped(int index) {

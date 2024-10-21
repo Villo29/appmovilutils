@@ -28,13 +28,13 @@ class _HomeState extends State<Home> {
     final Uri launchUri = Uri(
       scheme: 'sms',
       path: number,
-      queryParameters: {'body': Uri.encodeComponent('Hello from Home Page!')},
+      queryParameters: {'body': Uri.encodeComponent('Hola, Bienvenido a VilloMAx')},
     );
     await launchUrl(launchUri);
   }
 
   void _launchGitHub() async {
-    const url = 'https://github.com/Villo29/phone_app.git';
+    const url = 'https://github.com/Villo29/appmovilutils.git';
     // ignore: deprecated_member_use
     if (await canLaunch(url)) {
       // ignore: deprecated_member_use
