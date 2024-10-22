@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:proximity_sensor/proximity_sensor.dart';
+import 'dart:async';
 
 class TextToSpeechView extends StatefulWidget {
   const TextToSpeechView({super.key});
@@ -17,6 +19,8 @@ class _TextToSpeechViewState extends State<TextToSpeechView> {
   double rate = 0.5;
   String? _newVoiceText;
   TtsState ttsState = TtsState.stopped;
+  bool _isNear = false;
+  StreamSubscription<dynamic>? _streamSubscription;
 
   bool get isPlaying => ttsState == TtsState.playing;
 
@@ -24,9 +28,9 @@ class _TextToSpeechViewState extends State<TextToSpeechView> {
   void initState() {
     super.initState();
     initTts();
+    initProximitySensor();
   }
 
-  // Inicializa el TTS
   void initTts() {
     flutterTts = FlutterTts();
 
@@ -45,6 +49,17 @@ class _TextToSpeechViewState extends State<TextToSpeechView> {
     flutterTts.setCancelHandler(() {
       setState(() {
         ttsState = TtsState.stopped;
+      });
+    });
+  }
+
+  void initProximitySensor() {
+    _streamSubscription = ProximitySensor.events.listen((event) {
+      setState(() {
+        _isNear = event > 0;
+        if (_isNear) {
+          _stop(); // Detiene la reproducción si el sensor detecta proximidad
+        }
       });
     });
   }
@@ -75,15 +90,15 @@ class _TextToSpeechViewState extends State<TextToSpeechView> {
     });
   }
 
-  // Método para ocultar el teclado
   void _hideKeyboard() {
-    FocusScope.of(context).unfocus(); // Oculta el teclado
+    FocusScope.of(context).unfocus();
   }
 
   @override
   void dispose() {
     super.dispose();
     flutterTts.stop();
+    _streamSubscription?.cancel();
   }
 
   @override
@@ -113,14 +128,14 @@ class _TextToSpeechViewState extends State<TextToSpeechView> {
       alignment: Alignment.topCenter,
       padding: const EdgeInsets.symmetric(horizontal: 25.0),
       child: TextField(
-        maxLines: 6, // Permite múltiples líneas
+        maxLines: 6,
         minLines: 3,
         onChanged: _onChange,
         onSubmitted: (value) {
-          _hideKeyboard();  // Oculta el teclado cuando se presiona "Done"
-          _speak();         // Inicia la conversión de texto a voz al presionar "Done"
+          _hideKeyboard();
+          _speak();
         },
-        textInputAction: TextInputAction.done,  // Cambia el botón "Intro" a "Done"
+        textInputAction: TextInputAction.done,
         decoration: const InputDecoration(
           border: OutlineInputBorder(),
           labelText: 'Introduce el texto a convertir en voz',

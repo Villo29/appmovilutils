@@ -6,6 +6,7 @@ class LocationStatusScreen extends StatefulWidget {
   const LocationStatusScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _LocationStatusScreenState createState() => _LocationStatusScreenState();
 }
 
@@ -50,6 +51,7 @@ class _LocationStatusScreenState extends State<LocationStatusScreen> {
     }
 
     // Obtener la ubicación actual
+    // ignore: deprecated_member_use
     Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
     DateTime currentTime = DateTime.now();
 
@@ -63,9 +65,6 @@ class _LocationStatusScreenState extends State<LocationStatusScreen> {
       return;
     }
 
-    // Debugging - Imprimir la ubicación actual
-    print('Nueva ubicación: ${position.latitude}, ${position.longitude}');
-
     // Validar anomalías en la ubicación
     if (_lastPosition != null && _lastUpdateTime != null) {
       double distance = Geolocator.distanceBetween(
@@ -74,11 +73,7 @@ class _LocationStatusScreenState extends State<LocationStatusScreen> {
         position.latitude,
         position.longitude,
       );
-
       int timeDifference = currentTime.difference(_lastUpdateTime!).inSeconds;
-
-      print('Distancia: $distance metros');
-      print('Diferencia de tiempo: $timeDifference segundos');
 
       if (distance > _thresholdDistance && timeDifference < _minTimeBetweenUpdates) {
         setState(() {
@@ -105,7 +100,9 @@ class _LocationStatusScreenState extends State<LocationStatusScreen> {
   Future<void> _openInGoogleMaps() async {
     if (_lastPosition != null) {
       final url = 'https://www.google.com/maps/search/?api=1&query=${_lastPosition!.latitude},${_lastPosition!.longitude}';
+      // ignore: deprecated_member_use
       if (await canLaunch(url)) {
+        // ignore: deprecated_member_use
         await launch(url);
       } else {
         throw 'No se pudo abrir Google Maps';
@@ -124,7 +121,7 @@ class _LocationStatusScreenState extends State<LocationStatusScreen> {
         padding: const EdgeInsets.all(20.0),
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [const Color.fromARGB(255, 248, 248, 248)!, const Color.fromARGB(255, 255, 255, 255)!],
+            colors: [const Color.fromARGB(255, 248, 248, 248), const Color.fromARGB(255, 255, 255, 255)],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),

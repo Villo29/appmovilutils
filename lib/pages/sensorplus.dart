@@ -12,6 +12,7 @@ class SensorPlusPage extends StatefulWidget {
 
 class _SensorPlusPageState extends State<SensorPlusPage> {
   List<double> _accelerometerValues = [0.0, 0.0, 0.0];
+  List<double> _gyroscopeValues = [0.0, 0.0, 0.0];
   bool _isTorchOn = false;
 
   @override
@@ -22,6 +23,13 @@ class _SensorPlusPageState extends State<SensorPlusPage> {
     accelerometerEvents.listen((AccelerometerEvent event) {
       setState(() {
         _accelerometerValues = <double>[event.x, event.y, event.z];
+      });
+    });
+
+    // ignore: deprecated_member_use
+    gyroscopeEvents.listen((GyroscopeEvent event) {
+      setState(() {
+        _gyroscopeValues = <double>[event.x, event.y, event.z];
       });
     });
   }
@@ -45,6 +53,7 @@ class _SensorPlusPageState extends State<SensorPlusPage> {
   @override
   Widget build(BuildContext context) {
     final List<String> accelerometer = _accelerometerValues.map((double v) => v.toStringAsFixed(1)).toList();
+    final List<String> gyroscope = _gyroscopeValues.map((double v) => v.toStringAsFixed(1)).toList();
 
     return Scaffold(
       appBar: AppBar(
@@ -57,6 +66,8 @@ class _SensorPlusPageState extends State<SensorPlusPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text('Accelerometer: $accelerometer'),
+              SizedBox(height: 8.0),
+              Text('Gyroscope: $gyroscope'),
               SizedBox(height: 8.0),
               ElevatedButton(
                 onPressed: _toggleTorch,
